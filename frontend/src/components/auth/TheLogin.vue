@@ -52,14 +52,12 @@ export default {
     async loginUser() {
       try {
         // console.log(this.login)
-        let response = await this.$http.post("/api/usuario/login", this.login);
+        let response = await this.$http.post("/api/auth/signin", this.login);
         console.log(response.data);
-        let token = response.data.tokenReturn;
-        let user = response.data.user;
+        let token = response.data.accessToken;
 
         localStorage.setItem("jwt", token);
-        localStorage.setItem("user", JSON.stringify(user));
-
+        console.log(token)
         if (token) {
           swal(
             "Login Correcto",
